@@ -42,54 +42,40 @@
         </div>
 
         <div class="hero__visual">
-          <div class="dash-stage" id="dash-stage">
-            <div class="dash-frame" id="dash-frame">
-              <img src="images/dashboard-screenshot.png"
-                   alt="GFSC Compliance Register dashboard — 29 documents, 9,079 entries, fully cross-referenced"
-                   class="dash-img"
-                   id="dash-img" />
-              <!-- Invisible hotspot zones over each column header -->
-              <div class="col-spot" data-col="total"       aria-hidden="true"></div>
-              <div class="col-spot" data-col="rules"       aria-hidden="true"></div>
-              <div class="col-spot" data-col="guidance"    aria-hidden="true"></div>
-              <div class="col-spot" data-col="definitions" aria-hidden="true"></div>
-              <div class="col-spot" data-col="context"     aria-hidden="true"></div>
-              <div class="col-spot" data-col="breakdown"   aria-hidden="true"></div>
-              <div class="col-spot" data-col="crossrefs"   aria-hidden="true"></div>
-              <div class="col-spot" data-col="coverage"    aria-hidden="true"></div>
-            </div>
-            <!-- Floating callout badges — positioned over the tilted image -->
-            <div class="dash-callout" style="top:20%; left:54%;">
-              <span class="dash-callout__dot"></span>
-              <div class="dash-callout__card">
-                <strong class="dash-callout__stat">4,406</strong>
-                <span class="dash-callout__label">mandatory rules</span>
+          <div class="dashboard-hero">
+            <img src="images/dashboard-screenshot.png" alt="GFSC Compliance Register dashboard" class="dashboard-hero__img" />
+            <div class="dashboard-hero__hotspots">
+
+              <div class="hs hs--total">
+                <div class="hs__tip"><span class="hs__tip-label">Total</span><span class="hs__tip-text">Every entry in this document — rules, guidance, definitions, and context combined. The full scope of what applies to your firm.</span></div>
               </div>
-            </div>
-            <div class="dash-callout" style="top:48%; left:81%;">
-              <span class="dash-callout__dot"></span>
-              <div class="dash-callout__card">
-                <strong class="dash-callout__stat">6,324</strong>
-                <span class="dash-callout__label">cross-references</span>
+
+              <div class="hs hs--rules">
+                <div class="hs__tip"><span class="hs__tip-label">Rules</span><span class="hs__tip-text">The things your firm must do. Mandatory GFSC requirements — shown in red so they're never overlooked.</span></div>
               </div>
-            </div>
-            <div class="dash-callout" style="top:3%; right:3%; left:auto;">
-              <span class="dash-callout__dot"></span>
-              <div class="dash-callout__card">
-                <strong class="dash-callout__stat">29</strong>
-                <span class="dash-callout__label">GFSC documents</span>
+
+              <div class="hs hs--guidance">
+                <div class="hs__tip"><span class="hs__tip-label">Guidance</span><span class="hs__tip-text">The GFSC's steer on how to meet a rule in practice. Not mandatory, but it shows what good looks like in the regulator's eyes.</span></div>
               </div>
-            </div>
-            <!-- Tooltip card — positioned by JS, lives outside the tilted frame -->
-            <div class="col-tooltip" id="col-tooltip" role="tooltip" aria-hidden="true">
-              <div class="col-tooltip__name" id="col-tooltip-name"></div>
-              <p class="col-tooltip__body" id="col-tooltip-body"></p>
+
+              <div class="hs hs--definitions">
+                <div class="hs__tip"><span class="hs__tip-label">Definitions</span><span class="hs__tip-text">The precise meaning of terms used in the rules. A rule means exactly what its definitions say — getting these right matters.</span></div>
+              </div>
+
+              <div class="hs hs--context">
+                <div class="hs__tip"><span class="hs__tip-label">Context</span><span class="hs__tip-text">Background and introductory material. Helps you understand why a rule exists, not just what it says.</span></div>
+              </div>
+
+              <div class="hs hs--bar">
+                <div class="hs__tip"><span class="hs__tip-label">Entry breakdown</span><span class="hs__tip-text">A proportional bar showing the mix of rules, guidance, definitions, and context — so you can see at a glance what each document is made of.</span></div>
+              </div>
+
             </div>
           </div>
-          <p class="hero__col-hint" id="hero-col-hint">
-            <span class="col-hint-icon" aria-hidden="true">↑</span> Hover any column to learn what it measures
+          <p class="hero__visual-caption">
+            <span class="caption-hint">↑ Hover any column to learn what it measures</span>
+            <span class="caption-stats">29 GFSC documents · 9,079 entries · fully cross-referenced</span>
           </p>
-          <p class="hero__visual-caption">29 GFSC documents · 9,079 entries · fully cross-referenced</p>
         </div>
 
       </div>
@@ -274,136 +260,6 @@
       } catch(err) {}
     });
 
-    // ── Dashboard hero: column tooltips and image hover behaviour ──
-    (function () {
-      var COLS = {
-        total: {
-          label: 'Total',
-          text: 'Every entry in this document: rules, guidance, definitions, and context. The full picture of what applies to your firm.'
-        },
-        rules: {
-          label: 'Rules',
-          text: 'The things you must do. Mandatory requirements from the GFSC — non-compliance is a regulatory matter. Shown in red so they\'re never missed.'
-        },
-        guidance: {
-          label: 'Guidance',
-          text: 'The GFSC\'s steer on how to meet a rule in practice. Not mandatory, but it shows you what good looks like in their eyes.'
-        },
-        definitions: {
-          label: 'Definitions',
-          text: 'The precise meaning of terms used in the rules. Getting these right matters — a rule means exactly what its definitions say it means.'
-        },
-        context: {
-          label: 'Context',
-          text: 'Background, preambles, and structural content. Helps you understand why a rule exists, not just what it says.'
-        },
-        breakdown: {
-          label: 'Entry breakdown (visual)',
-          text: 'A proportional bar showing the mix of rules, guidance, definitions, and context in each document — so you can see at a glance whether a document is mostly obligations or mostly background.'
-        },
-        crossrefs: {
-          label: 'Cross-refs',
-          text: 'How many entries in this document link to related entries elsewhere in the register. High numbers mean this document is deeply woven into the wider regulatory framework.'
-        },
-        coverage: {
-          label: 'Cross-ref %',
-          text: 'The share of this document\'s entries that connect to at least one other rule in the register. Green means highly integrated. A low score doesn\'t mean less important — it often means the document stands alone.'
-        }
-      };
-
-      var tooltip   = document.getElementById('col-tooltip');
-      var tipName   = document.getElementById('col-tooltip-name');
-      var tipBody   = document.getElementById('col-tooltip-body');
-      var dashStage = document.querySelector('.dash-stage');
-      var dashFrame = document.getElementById('dash-frame');
-      var spots     = document.querySelectorAll('.col-spot');
-
-      if (!tooltip || !dashStage || !dashFrame) return;
-
-      var showTimer   = null;
-      var pendingSpot = null;
-
-      function positionTooltip(spot) {
-        var stageRect = dashStage.getBoundingClientRect();
-        var spotRect  = spot.getBoundingClientRect();
-        var tipH      = tooltip.offsetHeight || 110;
-        var tipW      = 280;
-
-        // Horizontally centre tooltip over the spot
-        var left = (spotRect.left - stageRect.left) + (spotRect.width / 2) - (tipW / 2);
-        // Default: appear below the hotspot
-        var top  = (spotRect.bottom - stageRect.top) + 10;
-
-        // Clamp left within stage bounds
-        left = Math.max(4, Math.min(left, stageRect.width - tipW - 4));
-
-        // If tooltip would spill below the viewport, flip it above the hotspot
-        if (spotRect.bottom + 10 + tipH > window.innerHeight) {
-          var flipTop = (spotRect.top - stageRect.top) - tipH - 10;
-          if (flipTop >= 0) top = flipTop;
-        }
-
-        tooltip.style.left = Math.round(left) + 'px';
-        tooltip.style.top  = Math.round(top)  + 'px';
-      }
-
-      spots.forEach(function (spot) {
-        spot.addEventListener('mouseenter', function () {
-          clearTimeout(showTimer);
-          pendingSpot = spot;
-
-          var col  = spot.dataset.col;
-          var data = COLS[col];
-          if (!data) return;
-
-          // Load content and park tooltip off-screen so offsetHeight is measurable
-          tipName.textContent = data.label;
-          tipBody.textContent = data.text;
-          tooltip.style.left = '-9999px';
-          tooltip.style.top  = '0';
-          tooltip.classList.remove('col-tooltip--visible');
-
-          // Appear after 120ms delay
-          showTimer = setTimeout(function () {
-            if (pendingSpot !== spot) return;
-            positionTooltip(spot);
-            tooltip.setAttribute('aria-hidden', 'false');
-            tooltip.classList.add('col-tooltip--visible');
-          }, 120);
-        });
-
-        spot.addEventListener('mouseleave', function () {
-          clearTimeout(showTimer);
-          pendingSpot = null;
-          tooltip.classList.remove('col-tooltip--visible');
-          tooltip.setAttribute('aria-hidden', 'true');
-        });
-      });
-
-      // Image border glows on any hover over the frame
-      dashFrame.addEventListener('mouseenter', function () {
-        dashFrame.classList.add('dash-frame--glow');
-      });
-      dashFrame.addEventListener('mouseleave', function () {
-        dashFrame.classList.remove('dash-frame--glow');
-        // Also hide tooltip in case cursor left a hotspot via the frame edge
-        clearTimeout(showTimer);
-        pendingSpot = null;
-        tooltip.classList.remove('col-tooltip--visible');
-        tooltip.setAttribute('aria-hidden', 'true');
-      });
-
-      // Mobile: tapping the image scrolls to the walkthrough section
-      var dashImg = document.getElementById('dash-img');
-      if (dashImg) {
-        dashImg.addEventListener('click', function () {
-          if (window.innerWidth <= 900) {
-            var wt = document.getElementById('walkthrough');
-            if (wt) wt.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      }
-    }());
   </script>
 </body>
 </html>

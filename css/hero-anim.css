@@ -1,189 +1,153 @@
-/* ── Dashboard Hero — single screenshot with column hotspot tooltips ── */
-
-/* Stage: wraps the tilted frame + the absolutely-positioned tooltip.
-   No transform here so tooltip positions map cleanly to screen coords. */
-.dash-stage {
+.dashboard-hero {
   position: relative;
   width: 100%;
-}
-
-/* Frame: the tilted 3D container. Holds the image and the invisible hotspot divs. */
-.dash-frame {
-  position: relative;
-  width: 100%;
-  transform: perspective(1200px) rotateX(4deg) rotateY(-2deg);
-  transform-origin: center top;
   border-radius: 6px;
-  box-shadow:
-    0 4px 16px rgba(26,39,68,0.10),
-    0 20px 60px rgba(26,39,68,0.16),
-    0 0 0 1px #ddd8cf;
-  transition: box-shadow 0.25s ease;
-  will-change: transform;
-  overflow: hidden;
 }
 
-.dash-frame--glow {
-  box-shadow:
-    0 4px 16px rgba(26,39,68,0.10),
-    0 20px 60px rgba(26,39,68,0.16),
-    0 0 0 2px #2eaadc;
-}
-
-/* Dashboard screenshot — fills the frame */
-.dash-img {
-  width: 100%;
-  height: auto;
+.dashboard-hero__img {
   display: block;
-  cursor: crosshair;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ddd8cf;
+  box-shadow: 0 2px 8px rgba(26,39,68,0.07), 0 12px 40px rgba(26,39,68,0.13);
+  transition: box-shadow 0.3s ease;
+}
+
+.dashboard-hero:hover .dashboard-hero__img {
+  box-shadow: 0 2px 8px rgba(26,39,68,0.07), 0 12px 40px rgba(26,39,68,0.16), 0 0 0 2px #2eaadc;
+}
+
+.dashboard-hero__hotspots {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   border-radius: 6px;
 }
 
-/* ── Column hotspots — invisible hover zones positioned over the header row ── */
-
-.col-spot {
+/* Column hotspot zones — percentages match the screenshot layout */
+.hs {
   position: absolute;
-  top: 11.5%;
-  height: 6%;
+  top: 0;
+  bottom: 0;
   cursor: crosshair;
   z-index: 10;
-  /* Uncomment to debug zone positions: */
-  /* background: rgba(46,170,220,0.25); outline: 1px solid #2eaadc; */
 }
 
-.col-spot[data-col="total"]       { left: 30.5%; width:  4.5%; }
-.col-spot[data-col="rules"]       { left: 35%;   width:  4.5%; }
-.col-spot[data-col="guidance"]    { left: 39.5%; width:  4.5%; }
-.col-spot[data-col="definitions"] { left: 44%;   width:  5%;   }
-.col-spot[data-col="context"]     { left: 49%;   width:  5%;   }
-.col-spot[data-col="breakdown"]   { left: 54%;   width: 16%;   }
-.col-spot[data-col="crossrefs"]   { left: 70%;   width:  8%;   }
-.col-spot[data-col="coverage"]    { left: 78%;   width: 12%;   }
+.hs--total       { left: 30.5%; width: 8%; }
+.hs--rules       { left: 38.5%; width: 8%; }
+.hs--guidance    { left: 46.5%; width: 9%; }
+.hs--definitions { left: 55.5%; width: 9%; }
+.hs--context     { left: 64.5%; width: 9%; }
+.hs--bar         { left: 73.5%; width: 26.5%; }
 
-/* ── Tooltip card ── */
-
-.col-tooltip {
+/* Subtle highlight on the header strip when hovering */
+.hs::before {
+  content: '';
   position: absolute;
-  width: 280px;
+  top: 8%; left: 0; right: 0;
+  height: 5%;
+  background: rgba(46,170,220,0);
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+.hs:hover::before { background: rgba(46,170,220,0.2); }
+
+/* Tooltip card */
+.hs__tip {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 220px;
   background: #1a2744;
-  border-radius: 6px;
-  padding: 1rem 1.15rem;
+  border-radius: 5px;
+  padding: 12px 14px;
   pointer-events: none;
-  z-index: 200;
-  /* Default: invisible, slightly shifted down */
   opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 80ms ease, transform 80ms ease;
+  transition: opacity 0.15s ease 0.08s, transform 0.15s ease 0.08s;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
-.col-tooltip.col-tooltip--visible {
+.hs:hover .hs__tip {
   opacity: 1;
-  transform: translateY(0);
-  transition: opacity 120ms ease, transform 120ms ease;
+  transform: translateX(-50%) translateY(0);
 }
 
-.col-tooltip__name {
-  font-family: var(--sans);
-  font-size: 0.7rem;
+/* Flip right-side tooltips so they don't clip */
+.hs--definitions .hs__tip,
+.hs--context .hs__tip,
+.hs--bar .hs__tip {
+  left: auto;
+  right: 0;
+  transform: translateX(0) translateY(8px);
+}
+.hs--definitions:hover .hs__tip,
+.hs--context:hover .hs__tip,
+.hs--bar:hover .hs__tip {
+  transform: translateX(0) translateY(0);
+}
+
+/* Tooltip arrow */
+.hs__tip::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #1a2744;
+}
+.hs--definitions .hs__tip::before,
+.hs--context .hs__tip::before,
+.hs--bar .hs__tip::before {
+  left: auto;
+  right: 16px;
+  transform: none;
+}
+
+.hs__tip-label {
+  display: block;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #2eaadc;
-  margin-bottom: 0.55rem;
+  margin-bottom: 5px;
 }
 
-.col-tooltip__body {
-  font-family: var(--sans);
-  font-size: 0.84rem;
-  line-height: 1.55;
-  color: #ffffff;
-  margin: 0;
+.hs__tip-text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.88);
 }
 
-/* ── Hint caption below image ── */
-
-.hero__col-hint {
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  color: var(--mute);
-  text-align: center;
-  margin-top: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  letter-spacing: 0.01em;
-  user-select: none;
-}
-
-.col-hint-icon {
-  font-size: 0.85rem;
-  line-height: 1;
-}
-
-/* ── Floating callout badges ── */
-
-.dash-callout {
-  position: absolute;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  pointer-events: none;
-  animation: callout-in 0.4s var(--ease) both;
-}
-/* dash-frame is :nth-child(1), so callouts are 2nd/3rd/4th children */
-.dash-callout:nth-child(3) { animation-delay: 0.15s; }
-.dash-callout:nth-child(4) { animation-delay: 0.30s; }
-
-@keyframes callout-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.dash-callout__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #2eaadc;
-  flex-shrink: 0;
-  box-shadow: 0 0 0 3px rgba(46,170,220,0.22);
-}
-
-.dash-callout__card {
-  background: #1a2744;
-  border-radius: 4px;
-  padding: 0.3rem 0.65rem;
+/* Caption below the image */
+.hero__visual-caption {
   display: flex;
   flex-direction: column;
-  line-height: 1.25;
-  white-space: nowrap;
-  box-shadow: 0 2px 12px rgba(26,39,68,0.22);
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.9rem;
 }
-
-.dash-callout__stat {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.dash-callout__label {
-  font-family: var(--sans);
-  font-size: 0.62rem;
+.caption-hint {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.74rem;
   color: #2eaadc;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.caption-stats {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.72rem;
+  color: #7a8aa0;
+  letter-spacing: 0.03em;
 }
 
-/* ── Responsive ── */
-
+/* Mobile — no hotspots, just the image */
 @media (max-width: 900px) {
-  .dash-frame {
-    transform: perspective(800px) rotateX(2deg) rotateY(0deg);
-  }
-  .col-spot       { display: none; }
-  .hero__col-hint  { display: none; }
-  .dash-img        { cursor: default; }
-  .dash-callout    { display: none; }
+  .dashboard-hero__hotspots { display: none; }
+  .caption-hint { display: none; }
 }

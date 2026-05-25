@@ -13,7 +13,7 @@
 }
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 1.7fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: 3.5rem;
   align-items: center;
   width: 100%;
@@ -31,14 +31,6 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-.hero__visual-caption {
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  color: var(--mute);
-  text-align: center;
-  margin-top: 1rem;
-  letter-spacing: 0.04em;
 }
 
 /* ── Testimonial — navy band, tall enough to be fully visible on load ── */
