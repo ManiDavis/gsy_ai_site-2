@@ -9,11 +9,11 @@
 }
 /* Widen the hero container beyond the global 1080px cap */
 .hero > .wrap {
-  max-width: 1280px;
+  max-width: 1380px;
 }
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 3.5rem;
   align-items: center;
   width: 100%;

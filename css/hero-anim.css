@@ -23,7 +23,7 @@
   border-radius: 6px;
 }
 
-/* Column hotspot zones — percentages match the screenshot layout */
+/* Column hotspot zones — measured from hero-screenshot.png */
 .hs {
   position: absolute;
   top: 0;
@@ -32,14 +32,14 @@
   z-index: 10;
 }
 
-.hs--total       { left: 30.5%; width: 8%; }
-.hs--rules       { left: 38.5%; width: 8%; }
-.hs--guidance    { left: 46.5%; width: 9%; }
-.hs--definitions { left: 55.5%; width: 9%; }
-.hs--context     { left: 64.5%; width: 9%; }
-.hs--bar         { left: 73.5%; width: 26.5%; }
+.hs--total       { left: 28.5%; width: 5.5%; }
+.hs--rules       { left: 34%;   width: 5%; }
+.hs--guidance    { left: 39%;   width: 5.5%; }
+.hs--definitions { left: 44.5%; width: 5.5%; }
+.hs--context     { left: 50%;   width: 5%; }
+.hs--bar         { left: 55%;   width: 25%; }
 
-/* Subtle highlight on the header strip when hovering */
+/* Subtle highlight on the column strip when hovering */
 .hs::before {
   content: '';
   position: absolute;
@@ -73,20 +73,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Flip right-side tooltips so they don't clip */
-.hs--definitions .hs__tip,
-.hs--context .hs__tip,
-.hs--bar .hs__tip {
-  left: auto;
-  right: 0;
-  transform: translateX(0) translateY(8px);
-}
-.hs--definitions:hover .hs__tip,
-.hs--context:hover .hs__tip,
-.hs--bar:hover .hs__tip {
-  transform: translateX(0) translateY(0);
-}
-
 /* Tooltip arrow */
 .hs__tip::before {
   content: '';
@@ -97,13 +83,6 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #1a2744;
-}
-.hs--definitions .hs__tip::before,
-.hs--context .hs__tip::before,
-.hs--bar .hs__tip::before {
-  left: auto;
-  right: 16px;
-  transform: none;
 }
 
 .hs__tip-label {
