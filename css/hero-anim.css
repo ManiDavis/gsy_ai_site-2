@@ -121,13 +121,69 @@
   line-height: 1;
 }
 
+/* ── Floating callout badges ── */
+
+.dash-callout {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  animation: callout-in 0.4s var(--ease) both;
+}
+/* dash-frame is :nth-child(1), so callouts are 2nd/3rd/4th children */
+.dash-callout:nth-child(3) { animation-delay: 0.15s; }
+.dash-callout:nth-child(4) { animation-delay: 0.30s; }
+
+@keyframes callout-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dash-callout__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2eaadc;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(46,170,220,0.22);
+}
+
+.dash-callout__card {
+  background: #1a2744;
+  border-radius: 4px;
+  padding: 0.3rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(26,39,68,0.22);
+}
+
+.dash-callout__stat {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dash-callout__label {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  color: #2eaadc;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* ── Responsive ── */
 
 @media (max-width: 900px) {
   .dash-frame {
     transform: perspective(800px) rotateX(2deg) rotateY(0deg);
   }
-  .col-spot      { display: none; }
-  .hero__col-hint { display: none; }
-  .dash-img      { cursor: default; }
+  .col-spot       { display: none; }
+  .hero__col-hint  { display: none; }
+  .dash-img        { cursor: default; }
+  .dash-callout    { display: none; }
 }
