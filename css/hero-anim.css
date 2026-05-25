@@ -46,8 +46,8 @@
 .hs--bar         { left: 59%;   width: 27%; }
 /* shifted whole length (7%) + 10px right */
 .hs--crossrefs   { left: 85%;   width: 7%; }
-/* shifted right a fair bit + trim from left */
-.hs--coverage    { left: 94%;   width: 6%; }
+/* shifted right a fair bit + trim from left, left nudged back slightly */
+.hs--coverage    { left: 93%;   width: 7%; }
 
 /* Highlight strip on the column header row when hovering.
    Moved up 2% and made 1% taller per user feedback. */
