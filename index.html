@@ -182,7 +182,8 @@
       <div class="walkthrough-gate" id="walkthrough-gate">
         <div class="gate-form-wrap">
           <p class="gate-prompt">Enter your details to watch the walkthrough</p>
-          <form class="gate-form" id="gate-form">
+          <form class="gate-form" id="gate-form" action="https://formsubmit.co/mani@gsy-ai.com" method="POST">
+            <input type="hidden" name="_captcha" value="false" />
             <div class="gate-form__row">
               <input type="text" name="name" placeholder="Your name" required class="gate-input" />
               <input type="email" name="email" placeholder="Work email" required class="gate-input" />
@@ -245,31 +246,36 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // Walkthrough gate — submit to formsubmit.co then reveal video
-    document.getElementById('gate-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = this.querySelector('.gate-submit');
-      btn.disabled = true;
-      btn.textContent = 'Loading…';
-
-      const data = new FormData(this);
-      try {
-        await fetch('https://formsubmit.co/ajax/mani@gsy-ai.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            name:     data.get('name'),
-            email:    data.get('email'),
-            firm:     data.get('firm'),
-            _subject: 'Walkthrough request — ' + data.get('firm'),
-          }),
-        });
-      } catch (_) {
-        // Reveal video regardless — don't block the user on a network error
+    // If returning from formsubmit.co redirect, reveal the video immediately
+    (function () {
+      if (location.hash === '#walkthrough-done') {
+        var gate  = document.getElementById('walkthrough-gate');
+        var video = document.getElementById('loom-wrap');
+        if (gate && video) {
+          gate.style.display  = 'none';
+          video.style.display = 'block';
+          history.replaceState(null, '', location.pathname + '#walkthrough');
+          var wt = document.getElementById('walkthrough');
+          if (wt) wt.scrollIntoView({ behavior: 'smooth' });
+        }
       }
+    }());
 
-      document.getElementById('walkthrough-gate').style.display = 'none';
-      document.getElementById('loom-wrap').style.display = 'block';
+    // Before submitting, inject _next (redirect back here) and _subject
+    document.getElementById('gate-form').addEventListener('submit', function () {
+      var firm = (this.querySelector('[name=firm]') || {}).value || '';
+
+      var next  = document.createElement('input');
+      next.type = 'hidden'; next.name = '_next';
+      next.value = location.origin + location.pathname + '#walkthrough-done';
+
+      var subj  = document.createElement('input');
+      subj.type = 'hidden'; subj.name = '_subject';
+      subj.value = 'Walkthrough request — ' + firm;
+
+      this.appendChild(next);
+      this.appendChild(subj);
+      // Natural form POST — no preventDefault
     });
 
   </script>
