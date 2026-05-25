@@ -194,17 +194,16 @@
       </div>
 
       <!-- Hidden video — shown after form submit -->
+      <!-- TO ADD VIDEO: replace the loom-placeholder div below with:
+           <div style="position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:6px;box-shadow:0 4px 32px rgba(26,39,68,0.14);">
+             <iframe src="https://www.loom.com/embed/YOUR_VIDEO_ID?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+               style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
+           </div>
+      -->
       <div class="loom-wrap" id="loom-wrap" style="display:none;">
-        <!--
-          Replace this block with your Loom embed:
-          <div style="position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:6px;box-shadow:0 4px 32px rgba(26,39,68,0.14);">
-            <iframe src="https://www.loom.com/embed/YOUR_VIDEO_ID?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
-          </div>
-        -->
         <div class="loom-placeholder">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--blue);"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-          <p style="margin-top:1rem; color:var(--soft);">Walkthrough video coming soon.</p>
+          <p style="margin-top:1rem; color:var(--soft);">Thanks — we'll be in touch shortly with the walkthrough.</p>
         </div>
       </div>
 
@@ -246,26 +245,31 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // Walkthrough gate — collect details then show video
-    document.getElementById('gate-form').addEventListener('submit', function(e) {
+    // Walkthrough gate — submit to formsubmit.co then reveal video
+    document.getElementById('gate-form').addEventListener('submit', async function(e) {
       e.preventDefault();
+      const btn = this.querySelector('.gate-submit');
+      btn.disabled = true;
+      btn.textContent = 'Loading…';
+
       const data = new FormData(this);
-      console.log('Walkthrough request:', {
-        name:  data.get('name'),
-        email: data.get('email'),
-        firm:  data.get('firm'),
-      });
-      const subject = encodeURIComponent('Walkthrough request - ' + data.get('firm'));
-      const body = encodeURIComponent(
-        'Name: ' + data.get('name') + '\n' +
-        'Email: ' + data.get('email') + '\n' +
-        'Firm: ' + data.get('firm')
-      );
+      try {
+        await fetch('https://formsubmit.co/ajax/mani@gsy-ai.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name:     data.get('name'),
+            email:    data.get('email'),
+            firm:     data.get('firm'),
+            _subject: 'Walkthrough request — ' + data.get('firm'),
+          }),
+        });
+      } catch (_) {
+        // Reveal video regardless — don't block the user on a network error
+      }
+
       document.getElementById('walkthrough-gate').style.display = 'none';
       document.getElementById('loom-wrap').style.display = 'block';
-      try {
-        window.open('mailto:mani@gsy-ai.com?subject=' + subject + '&body=' + body);
-      } catch(err) {}
     });
 
   </script>
