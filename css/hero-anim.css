@@ -34,8 +34,8 @@
 
 /* right edge of total was perfect (34.5%); left trimmed back 1% */
 .hs--total       { left: 27.5%; width: 7%; }
-/* right trimmed 0.5% */
-.hs--rules       { left: 34%;   width: 6.5%; }
+/* right trimmed 0.5%, left trimmed tiny */
+.hs--rules       { left: 34.5%; width: 6%; }
 /* right trimmed 0.5% */
 .hs--guidance    { left: 41%;   width: 5.5%; }
 /* right trimmed 0.5% */
@@ -46,8 +46,8 @@
 .hs--bar         { left: 59%;   width: 27%; }
 /* shifted whole length (7%) + 10px right */
 .hs--crossrefs   { left: 85%;   width: 7%; }
-/* same shift as crossrefs, then -10px from left */
-.hs--coverage    { left: 90%;   width: 8%; }
+/* shifted right a fair bit + trim from left */
+.hs--coverage    { left: 94%;   width: 6%; }
 
 /* Highlight strip on the column header row when hovering.
    Moved up 2% and made 1% taller per user feedback. */
@@ -55,7 +55,7 @@
   content: '';
   position: absolute;
   top: 21%; left: 0; right: 0;
-  height: 6%;
+  height: 7.5%;
   background: rgba(46,170,220,0);
   border-radius: 2px;
   transition: background 0.2s ease;
