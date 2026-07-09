@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The GFSC Compliance Register - GSY AI</title>
-  <meta name="description" content="A complete, cross-referenced compliance register covering every GFSC rule, guidance note, definition and statutory provision. Built for licensed firms in the Bailiwick of Guernsey." />
+  <title>FSR - Financial Services Register | GSY AI</title>
+  <meta name="description" content="The FSR — a single, cross-referenced repository of the regulations your firm must comply with. Rules, guidance notes, definitions and statutory provisions, fully indexed. Built for licensed firms in the Bailiwick of Guernsey." />
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/home.css" />
@@ -18,7 +18,7 @@
       <span class="nav__logo-text">GSY AI</span>
     </a>
     <div class="nav__links">
-      <a href="#register">The Register</a>
+      <a href="#register">FSR</a>
       <a href="#walkthrough">Walkthrough</a>
       <a href="about.html">About</a>
       <a href="mailto:mani@gsy-ai.com" class="nav__cta">Get in touch</a>
@@ -32,9 +32,9 @@
 
         <div class="hero__text">
           <div class="eyebrow" style="margin-bottom:1.1rem;">For licensed firms in the Bailiwick of Guernsey</div>
-          <h1 class="hero__h1">Every GFSC rule that applies to your firm.<br>In one place.</h1>
-          <p class="hero__lede">Compliance teams spend hours hunting through dozens of GFSC documents to answer a single question.</p>
-          <p class="hero__lede hero__lede--two">The Compliance Register is a fully cross-referenced workbook built for your licensee category — with everything needed to act on each rule without opening another document.</p>
+          <h1 class="hero__h1">Regulations that apply to your firm.<br>In one place. Indexed.</h1>
+          <p class="hero__lede">Financial services compliance requirements in the Bailiwick can be complex, multi-faceted and spread across multiple rules and regulations.</p>
+          <p class="hero__lede hero__lede--two">The Financial Services Register simplifies this by allowing you to select the legislation and regulation with which you are required to comply, creating a single repository of cross-referenced rules, guidance notes, definitions and statutory provisions.</p>
           <div class="hero__actions">
             <a href="#walkthrough" class="btn btn--primary">Watch the walkthrough</a>
             <a href="mailto:mani@gsy-ai.com" class="btn btn--outline">Get in touch</a>
@@ -42,23 +42,48 @@
         </div>
 
         <div class="hero__visual">
-          <div class="spreadsheet-hero" id="spreadsheet-hero">
-            <div class="spreadsheet-hero__stage">
-              <div class="ss-layer ss-layer--3">
-                <img src="images/dashboard-bg.png" alt="" aria-hidden="true" />
-                <span class="ss-layer__badge">Cross-Reference Map</span>
+          <div class="dashboard-hero">
+            <img src="images/hero-screenshot.png" alt="GFSC Compliance Register dashboard" class="dashboard-hero__img" />
+            <div class="dashboard-hero__hotspots">
+
+              <div class="hs hs--total">
+                <div class="hs__tip"><span class="hs__tip-label">Total</span><span class="hs__tip-text">Every entry in this document — rules, guidance, definitions, and context combined. The full scope of what applies to your firm.</span></div>
               </div>
-              <div class="ss-layer ss-layer--2">
-                <img src="images/dashboard-bg.png" alt="" aria-hidden="true" />
-                <span class="ss-layer__badge">Master Register</span>
+
+              <div class="hs hs--rules">
+                <div class="hs__tip"><span class="hs__tip-label">Rules</span><span class="hs__tip-text">The things your firm must do. Mandatory regulatory requirements — shown in red so they're never overlooked.</span></div>
               </div>
-              <div class="ss-layer ss-layer--1">
-                <img src="images/dashboard-screenshot.png" alt="GFSC Compliance Register dashboard" />
-                <span class="ss-layer__badge">Dashboard</span>
+
+              <div class="hs hs--guidance">
+                <div class="hs__tip"><span class="hs__tip-label">Guidance</span><span class="hs__tip-text">The regulator's steer on how to meet a rule in practice. Not mandatory, but it shows what good looks like in the regulator's eyes.</span></div>
               </div>
+
+              <div class="hs hs--definitions">
+                <div class="hs__tip"><span class="hs__tip-label">Definitions</span><span class="hs__tip-text">The precise meaning of terms used in the rules. A rule means exactly what its definitions say — getting these right matters.</span></div>
+              </div>
+
+              <div class="hs hs--context">
+                <div class="hs__tip"><span class="hs__tip-label">Context</span><span class="hs__tip-text">Background and introductory material. Helps you understand why a rule exists, not just what it says.</span></div>
+              </div>
+
+              <div class="hs hs--bar">
+                <div class="hs__tip"><span class="hs__tip-label">Entry breakdown</span><span class="hs__tip-text">A proportional bar showing the mix of rules, guidance, definitions, and context — so you can see at a glance what each document is made of.</span></div>
+              </div>
+
+              <div class="hs hs--crossrefs">
+                <div class="hs__tip"><span class="hs__tip-label">Cross-refs</span><span class="hs__tip-text">The number of entries from other documents deemed to relate to entries within this document. High numbers indicate deep integration with the wider regulatory framework.</span></div>
+              </div>
+
+              <div class="hs hs--coverage">
+                <div class="hs__tip"><span class="hs__tip-label">Cross-ref %</span><span class="hs__tip-text">The percentage of entries in this document that have at least one cross-reference to another document in the register.</span></div>
+              </div>
+
             </div>
           </div>
-          <p class="hero__visual-caption">29 GFSC documents · 9,079 entries · fully cross-referenced</p>
+          <p class="hero__visual-caption">
+            <span class="caption-hint">↑ Hover any column to learn what it measures</span>
+            <span class="caption-stats">the FSR — identified regulatory documents, fully cross-referenced</span>
+          </p>
         </div>
 
       </div>
@@ -71,8 +96,8 @@
       <div class="testimonial">
         <div class="testimonial__bar"></div>
         <div class="testimonial__body">
-          <p class="testimonial__quote">"[ Harriet's quote - one sentence, specific and outcome-focused. ]"</p>
-          <p class="testimonial__cite">Bank Aston (Guernsey) Limited</p>
+          <p class="testimonial__quote">"We strongly recommend GSY AI. Their proactive approach and strong grasp of requirements was impressive. The FSR has proved invaluable, freeing up resources and strengthening our ability to evidence compliance."</p>
+          <p class="testimonial__cite">Bank Aston Limited</p>
         </div>
       </div>
     </div>
@@ -92,7 +117,7 @@
         <div class="feature">
           <div class="feature__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
           <h3 style="margin-bottom:0.6rem;">Full cross-references</h3>
-          <p>Rules linked to parent statutes and related entries across all 29 documents. Following a question to its source takes seconds, not minutes.</p>
+          <p>Rules linked to parent statutes and related entries across all documents in the FSR. Following a question to its source takes seconds, not minutes.</p>
         </div>
         <div class="feature">
           <div class="feature__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
@@ -102,7 +127,7 @@
         <div class="feature">
           <div class="feature__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
           <h3 style="margin-bottom:0.6rem;">Audit-ready metadata</h3>
-          <p>Every entry carries a bank function tag, priority rating, compliance status field, evidence column, and owner — ready for an auditor or board pack.</p>
+          <p>Every entry carries an industry function tag, priority rating, compliance status field, evidence column, and owner — ready for an auditor or board pack.</p>
         </div>
         <!-- Row 2: supporting benefits, verbatim last -->
         <div class="feature">
@@ -111,9 +136,9 @@
           <p>Built-in dashboard shows counts by document, type, and priority. The summary tab gives a clean per-document breakdown for reporting.</p>
         </div>
         <div class="feature">
-          <div class="feature__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-          <h3 style="margin-bottom:0.6rem;">Maintenance guide</h3>
-          <p>A plain-language guide covers how to update entries when GFSC rules change — so your team can keep the register current without outside help.</p>
+          <div class="feature__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <h3 style="margin-bottom:0.6rem;">Documented rationale</h3>
+          <p>Every document included in the FSR comes with documented reasoning for its inclusion — so your selection is defensible to auditors.</p>
         </div>
         <div class="feature">
           <div class="feature__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
@@ -150,14 +175,15 @@
   <section id="walkthrough">
     <div class="wrap--narrow" style="text-align:center;">
       <div class="eyebrow" style="margin-bottom:0.8rem;">Five-minute walkthrough</div>
-      <h2 style="margin-bottom:1rem;">See the register in action</h2>
-      <p style="color:var(--soft); margin-bottom:2.5rem; font-size:1.05rem; line-height:1.6;">A short screen-share showing how the register is structured, how cross-references work, and how a compliance team would use it day-to-day.</p>
+      <h2 style="margin-bottom:1rem;">See the FSR in action</h2>
+      <p style="color:var(--soft); margin-bottom:2.5rem; font-size:1.05rem; line-height:1.6;">A short screen-share showing how the Financial Services Register is structured, how cross-references work, and how a compliance team would use it day-to-day.</p>
 
       <!-- Gate: show form first, reveal video on submit -->
       <div class="walkthrough-gate" id="walkthrough-gate">
         <div class="gate-form-wrap">
           <p class="gate-prompt">Enter your details to watch the walkthrough</p>
-          <form class="gate-form" id="gate-form">
+          <form class="gate-form" id="gate-form" action="https://formsubmit.co/mani@gsy-ai.com" method="POST">
+            <input type="hidden" name="_captcha" value="false" />
             <div class="gate-form__row">
               <input type="text" name="name" placeholder="Your name" required class="gate-input" />
               <input type="email" name="email" placeholder="Work email" required class="gate-input" />
@@ -169,17 +195,18 @@
       </div>
 
       <!-- Hidden video — shown after form submit -->
+      <!-- TO ADD VIDEO: replace the loom-placeholder div below with:
+           <div style="position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:6px;box-shadow:0 4px 32px rgba(26,39,68,0.14);">
+             <iframe src="https://www.loom.com/embed/YOUR_VIDEO_ID?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+               style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
+           </div>
+      -->
       <div class="loom-wrap" id="loom-wrap" style="display:none;">
-        <!--
-          Replace this block with your Loom embed:
-          <div style="position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:6px;box-shadow:0 4px 32px rgba(26,39,68,0.14);">
-            <iframe src="https://www.loom.com/embed/YOUR_VIDEO_ID?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
-          </div>
-        -->
-        <div class="loom-placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--blue);"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
-          <p style="margin-top:1rem; color:var(--soft);">Walkthrough video coming soon.</p>
+        <div style="position:relative;padding-bottom:62.5%;height:0;overflow:hidden;border-radius:6px;box-shadow:0 4px 32px rgba(26,39,68,0.14);">
+          <iframe src="https://www.youtube.com/embed/adCxU1NDunc?rel=0&modestbranding=1"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
         </div>
       </div>
 
@@ -193,10 +220,9 @@
     <div class="wrap--narrow" style="text-align:center;">
       <div class="eyebrow" style="margin-bottom:0.8rem;">Investment</div>
       <div class="price-display">
-        <span class="price-display__amount">£5,000</span>
-        <span class="price-display__label">fixed price</span>
+        <span class="price-display__amount">From £5,000</span>
       </div>
-      <p class="price-detail">Includes the complete workbook built for your licensee category, a handover call, and a maintenance guide so your team can keep it current.</p>
+      <p class="price-detail">The FSR can remove ongoing manual processes and costs, quickly paying for itself. Pricing depends on the number of regulatory documents required. Includes a register configured for your firm, a handover call, and documented selection rationale.</p>
       <a href="mailto:mani@gsy-ai.com" class="btn btn--primary" style="margin-top:2rem;">Get in touch to start</a>
     </div>
   </section>
@@ -221,39 +247,28 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // Trigger hero animation on load
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('spreadsheet-hero')
-          .classList.add('spreadsheet-hero--animate');
-      }, 300);
-    });
-
-    // Walkthrough gate — collect details then show video
-    document.getElementById('gate-form').addEventListener('submit', function(e) {
+    // Walkthrough gate — reveal the video immediately; notify by email in the
+    // background so a slow/down formsubmit.co never blocks the visitor.
+    document.getElementById('gate-form').addEventListener('submit', function (e) {
       e.preventDefault();
-      const data = new FormData(this);
-      // Log to console (replace with your preferred collection method)
-      console.log('Walkthrough request:', {
-        name:  data.get('name'),
-        email: data.get('email'),
-        firm:  data.get('firm'),
-      });
-      // Send to mailto as fallback (or hook up Formspree/Airtable later)
-      const subject = encodeURIComponent('Walkthrough request - ' + data.get('firm'));
-      const body = encodeURIComponent(
-        'Name: ' + data.get('name') + '\n' +
-        'Email: ' + data.get('email') + '\n' +
-        'Firm: ' + data.get('firm')
-      );
-      // Silent submission — just reveal the video
+      var form = this;
+      var firm = (form.querySelector('[name=firm]') || {}).value || '';
+
       document.getElementById('walkthrough-gate').style.display = 'none';
       document.getElementById('loom-wrap').style.display = 'block';
-      // Also open a mailto so you get notified (won't block if mailto fails)
-      try {
-        window.open('mailto:mani@gsy-ai.com?subject=' + subject + '&body=' + body);
-      } catch(err) {}
+
+      var data = new FormData(form);
+      data.set('_subject', 'Walkthrough request — ' + firm);
+
+      fetch('https://formsubmit.co/ajax/mani@gsy-ai.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data
+      }).catch(function (err) {
+        console.error('Walkthrough lead notification failed:', err);
+      });
     });
+
   </script>
 </body>
 </html>

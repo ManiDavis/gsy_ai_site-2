@@ -7,13 +7,17 @@
   display: flex;
   align-items: center;
 }
+/* Widen the hero container beyond the global 1080px cap */
+.hero > .wrap {
+  max-width: 1380px;
+}
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 3.5rem;
   align-items: center;
   width: 100%;
-  padding: 2.5rem 0 2rem;
+  padding: 1.5rem 0;
 }
 .hero__h1 { margin-bottom: 1.1rem; }
 .hero__lede {
@@ -27,14 +31,6 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-.hero__visual-caption {
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  color: var(--mute);
-  text-align: center;
-  margin-top: 1rem;
-  letter-spacing: 0.04em;
 }
 
 /* ── Testimonial — navy band, tall enough to be fully visible on load ── */
