@@ -247,36 +247,26 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // If returning from formsubmit.co redirect, reveal the video immediately
-    (function () {
-      if (location.hash === '#walkthrough-done') {
-        var gate  = document.getElementById('walkthrough-gate');
-        var video = document.getElementById('loom-wrap');
-        if (gate && video) {
-          gate.style.display  = 'none';
-          video.style.display = 'block';
-          history.replaceState(null, '', location.pathname + '#walkthrough');
-          var wt = document.getElementById('walkthrough');
-          if (wt) wt.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }());
+    // Walkthrough gate — reveal the video immediately; notify by email in the
+    // background so a slow/down formsubmit.co never blocks the visitor.
+    document.getElementById('gate-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var form = this;
+      var firm = (form.querySelector('[name=firm]') || {}).value || '';
 
-    // Before submitting, inject _next (redirect back here) and _subject
-    document.getElementById('gate-form').addEventListener('submit', function () {
-      var firm = (this.querySelector('[name=firm]') || {}).value || '';
+      document.getElementById('walkthrough-gate').style.display = 'none';
+      document.getElementById('loom-wrap').style.display = 'block';
 
-      var next  = document.createElement('input');
-      next.type = 'hidden'; next.name = '_next';
-      next.value = location.origin + location.pathname + '#walkthrough-done';
+      var data = new FormData(form);
+      data.set('_subject', 'Walkthrough request — ' + firm);
 
-      var subj  = document.createElement('input');
-      subj.type = 'hidden'; subj.name = '_subject';
-      subj.value = 'Walkthrough request — ' + firm;
-
-      this.appendChild(next);
-      this.appendChild(subj);
-      // Natural form POST — no preventDefault
+      fetch('https://formsubmit.co/ajax/mani@gsy-ai.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data
+      }).catch(function (err) {
+        console.error('Walkthrough lead notification failed:', err);
+      });
     });
 
   </script>
